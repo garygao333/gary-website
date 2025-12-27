@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { VscMarkdown, VscFile } from "react-icons/vsc";
+import { SiTypescript } from "react-icons/si";
 
 type FileType = "README.md" | "resume" | "links.ts" | null;
 
@@ -114,13 +116,13 @@ export const FileViewer: React.FC<FileViewerProps> = ({ activeFile, onClose }) =
   const getFileIcon = (file: FileType) => {
     switch (file) {
       case "README.md":
-        return "📄";
+        return <VscMarkdown className="text-blue-400" />;
       case "resume":
-        return "📋";
+        return <VscFile className="text-zinc-400" />;
       case "links.ts":
-        return "🔗";
+        return <SiTypescript className="text-blue-500" />;
       default:
-        return "📄";
+        return <VscFile className="text-zinc-400" />;
     }
   };
 

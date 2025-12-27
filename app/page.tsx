@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ResizableTerminalPanel } from "./components/ResizableTerminalPanel";
 import { FileViewer } from "./components/FileViewer";
+import { VscMarkdown, VscFile } from "react-icons/vsc";
+import { SiTypescript } from "react-icons/si";
 
 type FileType = "README.md" | "resume" | "links.ts" | null;
 
@@ -10,9 +12,9 @@ export default function Home() {
   const [activeFile, setActiveFile] = useState<FileType>(null);
 
   const files = [
-    { name: "README.md" as const, icon: "📄" },
-    { name: "resume" as const, icon: "📋" },
-    { name: "links.ts" as const, icon: "🔗" },
+    { name: "README.md" as const, icon: <VscMarkdown className="text-blue-400" /> },
+    { name: "resume" as const, icon: <VscFile className="text-zinc-400" /> },
+    { name: "links.ts" as const, icon: <SiTypescript className="text-blue-500" /> },
   ];
 
   const handleEditorClick = () => {
