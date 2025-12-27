@@ -88,6 +88,18 @@ export default function Home() {
                       backgroundColor: activeFile === file.name ? "rgba(0, 43, 54, 0.8)" : "transparent",
                       borderLeft: activeFile === file.name ? "2px solid var(--accent-primary)" : "2px solid transparent"
                     }}
+                    onMouseEnter={(e) => {
+                      if (activeFile !== file.name) {
+                        e.currentTarget.style.backgroundColor = "rgba(7, 54, 66, 0.5)";
+                        e.currentTarget.style.color = "var(--fg-main)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (activeFile !== file.name) {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                        e.currentTarget.style.color = "var(--fg-muted)";
+                      }
+                    }}
                   >
                     <span>{file.icon}</span>
                     <span>{file.name}</span>
