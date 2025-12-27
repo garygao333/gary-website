@@ -42,7 +42,7 @@ export const Terminal: React.FC = () => {
         <div className="space-y-1">
           <div>Welcome to Gary&apos;s TUI portfolio</div>
           <div>
-            Type <span className="text-emerald-300 font-semibold">help</span> to see available commands.
+            Type <span style={{ color: "var(--cyan)", fontWeight: 600 }}>help</span> to see available commands.
           </div>
         </div>
       ),
@@ -109,12 +109,12 @@ export const Terminal: React.FC = () => {
             <ul className="mt-1 space-y-1">
               {PROJECTS.map((p) => (
                 <li key={p.id}>
-                  <span className="text-emerald-300">{p.id}</span>{" "}
+                  <span style={{ color: "var(--cyan)" }}>{p.id}</span>{" "}
                   - {p.name}
                 </li>
               ))}
             </ul>
-            <div className="mt-1 text-[11px] text-emerald-400/80">
+            <div className="mt-1 text-[11px]" style={{ color: "var(--fg-muted)" }}>
               Use <span className="font-mono">project &lt;id&gt;</span> for details.
             </div>
           </div>
@@ -124,7 +124,7 @@ export const Terminal: React.FC = () => {
       case "project": {
         const id = args[1];
         if (!id) {
-          output = <>Usage: project &lt;id&gt;. Try <span className="text-emerald-300">projects</span>.</>;
+          output = <>Usage: project &lt;id&gt;. Try <span style={{ color: "var(--cyan)" }}>projects</span>.</>;
           break;
         }
 
@@ -135,7 +135,7 @@ export const Terminal: React.FC = () => {
           output = (
             <>
               No project found with id &apos;{id}&apos;. Try{" "}
-              <span className="text-emerald-300">projects</span>.
+              <span style={{ color: "var(--cyan)" }}>projects</span>.
             </>
           );
           break;
@@ -152,7 +152,7 @@ export const Terminal: React.FC = () => {
               href={proj.url}
               target="_blank"
               rel="noreferrer"
-              className="inline-block mt-1 underline text-emerald-300"
+              className="inline-block mt-1 underline"
             >
               Open project
             </a>
@@ -183,7 +183,7 @@ export const Terminal: React.FC = () => {
               href="https://example.com/gary-resume.pdf"
               target="_blank"
               rel="noreferrer"
-              className="underline text-emerald-300"
+              className="underline"
             >
               gary-resume.pdf
             </a>
@@ -196,7 +196,7 @@ export const Terminal: React.FC = () => {
           <div className="space-y-1">
             <div>
               Email:{" "}
-              <span className="text-emerald-300">
+              <span style={{ color: "var(--cyan)" }}>
                 garygao@sas.upenn.edu
               </span>
             </div>
@@ -206,7 +206,7 @@ export const Terminal: React.FC = () => {
                 href="https://github.com/garygao333"
                 target="_blank"
                 rel="noreferrer"
-                className="underline text-emerald-300"
+                className="underline"
               >
                 github.com/garygao333
               </a>
@@ -217,7 +217,7 @@ export const Terminal: React.FC = () => {
                 href="https://linkedin.com/in/garygao"
                 target="_blank"
                 rel="noreferrer"
-                className="underline text-emerald-300"
+                className="underline"
               >
                 linkedin.com/in/garygao
               </a>
@@ -244,8 +244,8 @@ export const Terminal: React.FC = () => {
         output = (
           <div>
             Command not found:{" "}
-            <span className="text-red-400">{command}</span>. Try{" "}
-            <span className="text-emerald-300">help</span>.
+            <span style={{ color: "var(--red)" }}>{command}</span>. Try{" "}
+            <span style={{ color: "var(--cyan)" }}>help</span>.
           </div>
         );
     }
@@ -291,13 +291,18 @@ export const Terminal: React.FC = () => {
 
   return (
     <div
-      className="h-full bg-black/70 border-t border-emerald-500/20 text-sm flex flex-col"
+      className="h-full text-sm flex flex-col"
+      style={{
+        backgroundColor: "var(--bg-main)",
+        borderTop: "1px solid var(--border-subtle)",
+        color: "var(--fg-main)"
+      }}
       onClick={() => inputRef.current?.focus()}
     >
       <div className="flex-1 overflow-y-auto px-6 py-4">
         {/* Big stacked title banner */}
         <div className="mb-8">
-          <div className="stack-title text-[64px] sm:text-[88px] md:text-[112px] text-purple-400">
+          <div className="stack-title text-[64px] sm:text-[88px] md:text-[112px]" style={{ color: "var(--violet)" }}>
             {/* Foreground filled text (two lines: GARY / GAO) */}
             <div className="stack-layer-top">
               <div>GARY</div>
@@ -320,8 +325,8 @@ export const Terminal: React.FC = () => {
           </div>
 
           {/* Subtitle */}
-          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-6">
-            (Write <span className="text-emerald-300">&apos;help&apos;</span> if you&apos;re lost)
+          <p className="text-xs sm:text-sm font-mono mt-6" style={{ color: "var(--fg-muted)" }}>
+            (Write <span style={{ color: "var(--cyan)" }}>&apos;help&apos;</span> if you&apos;re lost)
           </p>
         </div>
 
@@ -329,7 +334,7 @@ export const Terminal: React.FC = () => {
           <div key={idx} className="mb-2">
             {entry.command && (
               <div>
-                <span className="text-emerald-400">{PROMPT}</span>{" "}
+                <span style={{ color: "var(--blue)" }}>{PROMPT}</span>{" "}
                 <span>{entry.command}</span>
               </div>
             )}
@@ -341,10 +346,11 @@ export const Terminal: React.FC = () => {
 
         {/* Current prompt */}
         <div className="flex items-center">
-          <span className="text-emerald-400">{PROMPT}</span>
+          <span style={{ color: "var(--blue)" }}>{PROMPT}</span>
           <input
             ref={inputRef}
-            className="flex-1 bg-transparent outline-none border-none ml-2 caret-emerald-300"
+            className="flex-1 bg-transparent outline-none border-none ml-2"
+            style={{ color: "var(--fg-main)", caretColor: "var(--cursor-color)" }}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}

@@ -1,23 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #6ee7b7;
-}
+  /* base Solarized palette */
+  --base03:  #002b36;
+  --base02:  #073642;
+  --base01:  #586e75;
+  --base00:  #657b83;
+  --base0:   #839496;
+  --base1:   #93a1a1;
+  --base2:   #eee8d5;
+  --base3:   #fdf6e3;
+  --yellow:  #b58900;
+  --orange:  #cb4b16;
+  --red:     #dc322f;
+  --magenta: #d33682;
+  --violet:  #6c71c4;
+  --blue:    #268bd2;
+  --cyan:    #2aa198;
+  --green:   #859900;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* semantic roles for your app */
+  --bg-main:        var(--base03);
+  --bg-alt:         var(--base02);
+  --bg-elevated:    #021920;
+  --border-subtle:  var(--base02);
+  --border-strong:  var(--base01);
+
+  --fg-main:        var(--base0);
+  --fg-muted:       var(--base01);
+  --fg-strong:      var(--base1);
+
+  --accent-primary: var(--blue);
+  --accent-secondary: var(--cyan);
+  --accent-danger:  var(--red);
+  --accent-warning: var(--yellow);
+  --accent-success: var(--green);
+
+  --cursor-color:   var(--base2);
+  --selection-bg:   rgba(7, 54, 66, 0.9);
 }
 
 /* Global terminal-ish styling */
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg-main);
+  color: var(--fg-main);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+}
+
+/* Links */
+a {
+  color: var(--accent-secondary);
+}
+
+a:hover {
+  color: var(--accent-primary);
 }
 
 /* === Stacked pixel-style title === */
@@ -44,8 +81,8 @@ body {
   position: absolute;
   inset: 0;
   color: transparent;
-  -webkit-text-stroke: 2px #7c3aed; /* purple outline */
-  text-stroke: 2px #7c3aed;         /* fallback */
+  -webkit-text-stroke: 2px var(--violet);
+  text-stroke: 2px var(--violet);
   z-index: 1;
 }
 
@@ -72,14 +109,19 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--bg-alt);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(110, 231, 183, 0.3);
+  background: var(--base01);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(110, 231, 183, 0.5);
+  background: var(--base00);
+}
+
+/* Selection */
+::selection {
+  background: var(--selection-bg);
 }
