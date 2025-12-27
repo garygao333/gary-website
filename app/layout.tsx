@@ -11,7 +11,9 @@ export const metadata: Metadata = {
   title: "Gary Gao | Terminal",
   description: "Gary Gao's TUI-style personal portfolio",
   icons: {
-    icon: "/favicon.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
