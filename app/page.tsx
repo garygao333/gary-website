@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { ResizableTerminalPanel } from "./components/ResizableTerminalPanel";
-import { FileViewer } from "./components/FileViewer";
+import { FileViewer, ReadmeContent } from "./components/FileViewer";
 import { VscMarkdown, VscFile } from "react-icons/vsc";
 import { SiTypescript } from "react-icons/si";
+import { VscDesktopDownload } from "react-icons/vsc";
 
 type FileType = "README.md" | "resume" | "links.ts" | null;
 
@@ -26,6 +27,46 @@ export default function Home() {
       className="h-screen overflow-hidden flex flex-col"
       style={{ backgroundColor: "var(--bg-main)", color: "var(--fg-main)" }}
     >
+      {/* Mobile view - README only */}
+      <div className="md:hidden h-full flex flex-col">
+        <header
+          className="flex items-center justify-between px-4 py-2"
+          style={{
+            backgroundColor: "var(--bg-alt)",
+            borderBottom: "1px solid var(--border-subtle)",
+            color: "var(--fg-strong)"
+          }}
+        >
+          <div className="flex items-center gap-2 text-xs">
+            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--red)" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--yellow)" }} />
+            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--green)" }} />
+            <span className="ml-3 font-semibold" style={{ color: "var(--cyan)" }}>
+              gary-tui
+            </span>
+          </div>
+          <div className="text-xs" style={{ color: "var(--fg-muted)" }}>
+            README.md
+          </div>
+        </header>
+        <div className="flex-1 overflow-y-auto p-6">
+          <ReadmeContent />
+        </div>
+        <div
+          className="flex items-center justify-center gap-2 px-4 py-3 text-xs"
+          style={{
+            backgroundColor: "var(--bg-alt)",
+            borderTop: "1px solid var(--border-subtle)",
+            color: "var(--fg-muted)"
+          }}
+        >
+          <VscDesktopDownload style={{ color: "var(--cyan)" }} />
+          <span>View full terminal experience on desktop</span>
+        </div>
+      </div>
+
+      {/* Desktop view - Full TUI */}
+      <div className="hidden md:flex md:flex-col h-full">
       {/* Top bar */}
       <header
         className="flex items-center justify-between px-4 py-2"
@@ -148,6 +189,7 @@ export default function Home() {
           {/* Resizable Terminal Panel */}
           <ResizableTerminalPanel />
         </main>
+      </div>
       </div>
     </div>
   );

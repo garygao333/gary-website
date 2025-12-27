@@ -11,7 +11,7 @@ interface FileViewerProps {
   onClose: () => void;
 }
 
-const ReadmeContent = () => (
+export const ReadmeContent = () => (
   <div className="text-sm space-y-4" style={{ color: "var(--fg-main)" }}>
     <pre className="whitespace-pre-wrap">
       <span style={{ color: "var(--violet)" }}># Gary Gao</span>
