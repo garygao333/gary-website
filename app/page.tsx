@@ -57,7 +57,7 @@ export default function Home() {
         <aside
           className="hidden md:flex w-60 flex-col"
           style={{
-            backgroundColor: "var(--bg-alt)",
+            backgroundColor: "var(--bg-elevated)",
             borderRight: "1px solid var(--border-subtle)"
           }}
         >
