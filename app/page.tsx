@@ -1,4 +1,4 @@
-import { Terminal } from "./components/Terminal";
+import { ResizableTerminalPanel } from "./components/ResizableTerminalPanel";
 
 export default function Home() {
   return (
@@ -54,10 +54,13 @@ export default function Home() {
 
         {/* Main panel */}
         <main className="flex-1 flex flex-col">
-          {/* Terminal */}
-          <section className="flex-1">
-            <Terminal />
-          </section>
+          {/* Blank top area (editor space) */}
+          <div className="flex-1 bg-[#0a0a0f]">
+            {/* This area is intentionally left blank */}
+          </div>
+
+          {/* Resizable Terminal Panel */}
+          <ResizableTerminalPanel />
         </main>
       </div>
     </div>
