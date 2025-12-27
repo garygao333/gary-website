@@ -16,13 +16,13 @@ export const ReadmeContent = () => (
     <pre className="whitespace-pre-wrap">
       <span style={{ color: "var(--violet)" }}># Gary Gao</span>
       {"\n\n"}
-      <span style={{ color: "var(--fg-main)" }}>Hi, I&apos;m Gary! I study Physics + Wharton at Penn.</span>
+      <span style={{ color: "var(--fg-main)" }}>Hi, I&apos;m Gary! I study CS + Wharton at Penn.</span>
       {"\n\n"}
       <span style={{ color: "var(--violet)" }}>## About Me</span>
       {"\n\n"}
-      <span style={{ color: "var(--fg-main)" }}>I like building at the edge of deep tech, AI, neuromorphic hardware, and archaeology.</span>
+      <span style={{ color: "var(--fg-main)" }}>I like building at the edge of deep tech, AI, neuromorphic hardware, and robotics.</span>
       {"\n"}
-      <span style={{ color: "var(--fg-main)" }}>This TUI is my little playground to show off projects, experiments, and weird ideas.</span>
+      <span style={{ color: "var(--fg-main)" }}>This TUI is a place for me to show off projects, experiences, and ideas.</span>
       {"\n\n"}
       <span style={{ color: "var(--violet)" }}>## Interests</span>
       {"\n\n"}
@@ -32,72 +32,37 @@ export const ReadmeContent = () => (
       {"\n"}
       <span style={{ color: "var(--fg-main)" }}>- Archaeology & GIS</span>
       {"\n"}
-      <span style={{ color: "var(--fg-main)" }}>- Hardware Hacking</span>
+      <span style={{ color: "var(--fg-main)" }}>- Hardware and Robotics</span>
+      {"\n"}
+      <span style={{ color: "var(--fg-main)" }}>- Flying Planes</span>
       {"\n\n"}
       <span style={{ color: "var(--violet)" }}>## Current Projects</span>
       {"\n\n"}
       <span style={{ color: "var(--fg-main)" }}>- **Chert** - Voice-based GIS for Archaeology</span>
       {"\n"}
       <span style={{ color: "var(--fg-main)" }}>- **Nodal CLI** - Hardware copilot for embedded systems</span>
+      {"\n"}
+      <span style={{ color: "var(--fg-main)" }}>- **Photon Framework** - Building Flux</span>
+      {"\n"}
+      <span style={{ color: "var(--fg-main)" }}>- **Penn Engineering (LRSM)** - Building Physical AI</span>
+      {"\n"}
+      <span style={{ color: "var(--fg-main)" }}>- **GAO Capital** - Stock Forecasting Model using 0DTE Options</span>
+      {"\n\n"}
+      <span style={{ color: "var(--violet)" }}>## Past Projects</span>
+      {"\n\n"}
+      <span style={{ color: "var(--fg-main)" }}>- **ShiftKey** - Developed pricing model to recommend optimal base rates for over 10,000 healthcare facilities</span>
+      {"\n"}
+      <span style={{ color: "var(--fg-main)" }}>- **Tharros** - Built a Pottery Sherd Classification Model</span>
+      {"\n"}
+      <span style={{ color: "var(--fg-main)" }}>- **Wharton** - Helped cDots develop their capital stack</span>
     </pre>
   </div>
 );
 
 const ResumeContent = () => (
-  <div className="text-sm space-y-3" style={{ color: "var(--fg-main)" }}>
-    <div
-      className="rounded p-6"
-      style={{
-        border: "1px solid var(--border-subtle)",
-        backgroundColor: "var(--bg-alt)"
-      }}
-    >
-      <h1 className="text-2xl font-bold mb-1" style={{ color: "var(--cyan)" }}>Gary Gao</h1>
-      <p className="text-sm mb-4" style={{ color: "var(--fg-muted)" }}>garygao@sas.upenn.edu | Philadelphia, PA</p>
-
-      <div className="mb-4">
-        <h2
-          className="text-lg font-semibold pb-1 mb-2"
-          style={{ color: "var(--violet)", borderBottom: "1px solid var(--border-subtle)" }}
-        >
-          Education
-        </h2>
-        <div>
-          <p className="font-medium">University of Pennsylvania</p>
-          <p className="text-sm" style={{ color: "var(--fg-muted)" }}>B.A. Physics & B.S. Economics (Wharton)</p>
-        </div>
-      </div>
-
-      <div className="mb-4">
-        <h2
-          className="text-lg font-semibold pb-1 mb-2"
-          style={{ color: "var(--violet)", borderBottom: "1px solid var(--border-subtle)" }}
-        >
-          Skills
-        </h2>
-        <p className="text-sm" style={{ color: "var(--fg-muted)" }}>
-          Python, TypeScript, React, Next.js, PyTorch, Node.js, Arduino, C/C++, SQL, Tailwind CSS
-        </p>
-      </div>
-
-      <div className="mb-4">
-        <h2
-          className="text-lg font-semibold pb-1 mb-2"
-          style={{ color: "var(--violet)", borderBottom: "1px solid var(--border-subtle)" }}
-        >
-          Projects
-        </h2>
-        <div className="space-y-2">
-          <div>
-            <p className="font-medium">Chert - Voice-based GIS</p>
-            <p className="text-sm" style={{ color: "var(--fg-muted)" }}>Voice-first GIS data collection platform for archaeological projects</p>
-          </div>
-          <div>
-            <p className="font-medium">Nodal CLI</p>
-            <p className="text-sm" style={{ color: "var(--fg-muted)" }}>CLI that generates wiring diagrams, firmware, and host code for Arduino/ESP32</p>
-          </div>
-        </div>
-      </div>
+  <div className="text-sm flex items-center justify-center h-full" style={{ color: "var(--fg-muted)" }}>
+    <div className="text-center">
+      <p style={{ color: "var(--yellow)" }}>Currently under construction</p>
     </div>
   </div>
 );
@@ -121,7 +86,7 @@ const LinksContent = () => (
       {"\n\n"}
       <span style={{ color: "var(--fg-muted)" }}>{"  // Email"}</span>
       {"\n"}
-      {"  "}<span style={{ color: "var(--cyan)" }}>email</span>: <span style={{ color: "var(--yellow)" }}>&quot;<a href="mailto:garygao@sas.upenn.edu" className="hover:underline">garygao@sas.upenn.edu</a>&quot;</span>,
+      {"  "}<span style={{ color: "var(--cyan)" }}>email</span>: <span style={{ color: "var(--yellow)" }}>&quot;<a href="mailto:garygao@wharton.upenn.edu" className="hover:underline">garygao@wharton.upenn.edu</a>&quot;</span>,
       {"\n"}
       {"}"};
     </pre>
