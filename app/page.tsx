@@ -54,40 +54,7 @@ export default function Home() {
 
         {/* Main panel */}
         <main className="flex-1 flex flex-col">
-          {/* Banner like UNI BEAR style */}
-          <section className="border-b border-emerald-500/20 bg-[#050712] px-4 py-6 overflow-x-auto">
-            <div className="flex flex-col gap-4">
-              {/* Big stacked title */}
-              <div className="stack-title text-[64px] sm:text-[88px] md:text-[112px] text-purple-400">
-                {/* Foreground filled text (two lines: GARY / GAO) */}
-                <div className="stack-layer-top">
-                  <div>GARY</div>
-                  <div>GAO</div>
-                </div>
-
-                {/* Stacked outline layers behind */}
-                <div className="stack-layer-1">
-                  <div>GARY</div>
-                  <div>GAO</div>
-                </div>
-                <div className="stack-layer-2">
-                  <div>GARY</div>
-                  <div>GAO</div>
-                </div>
-                <div className="stack-layer-3">
-                  <div>GARY</div>
-                  <div>GAO</div>
-                </div>
-              </div>
-
-              {/* Subtitle */}
-              <p className="text-xs sm:text-sm text-zinc-400 font-mono">
-                (Write <span className="text-emerald-300">&apos;help&apos;</span> if you&apos;re lost)
-              </p>
-            </div>
-          </section>
-
-          {/* Terminal goes here */}
+          {/* Terminal */}
           <section className="flex-1">
             <Terminal />
           </section>

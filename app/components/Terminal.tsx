@@ -295,6 +295,36 @@ export const Terminal: React.FC = () => {
       onClick={() => inputRef.current?.focus()}
     >
       <div className="flex-1 overflow-y-auto px-3 py-2">
+        {/* Big stacked title banner */}
+        <div className="mb-6">
+          <div className="stack-title text-[64px] sm:text-[88px] md:text-[112px] text-purple-400">
+            {/* Foreground filled text (two lines: GARY / GAO) */}
+            <div className="stack-layer-top">
+              <div>GARY</div>
+              <div>GAO</div>
+            </div>
+
+            {/* Stacked outline layers behind */}
+            <div className="stack-layer-1">
+              <div>GARY</div>
+              <div>GAO</div>
+            </div>
+            <div className="stack-layer-2">
+              <div>GARY</div>
+              <div>GAO</div>
+            </div>
+            <div className="stack-layer-3">
+              <div>GARY</div>
+              <div>GAO</div>
+            </div>
+          </div>
+
+          {/* Subtitle */}
+          <p className="text-xs sm:text-sm text-zinc-400 font-mono mt-4">
+            (Write <span className="text-emerald-300">&apos;help&apos;</span> if you&apos;re lost)
+          </p>
+        </div>
+
         {history.map((entry, idx) => (
           <div key={idx} className="mb-2">
             {entry.command && (
