@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Gary Gao | Terminal",
-  description: "Gary Gao's TUI-style personal portfolio",
+  title: "Gary Gao",
+  description: "Gary Gao - CS + Wharton @ Penn",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jetbrainsMono.variable} antialiased`}>
+      <body className={`${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

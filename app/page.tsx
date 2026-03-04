@@ -1,196 +1,190 @@
-"use client";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { HiOutlineMail } from "react-icons/hi";
 
-import { useState } from "react";
-import { ResizableTerminalPanel } from "./components/ResizableTerminalPanel";
-import { FileViewer, ReadmeContent } from "./components/FileViewer";
-import { VscMarkdown, VscFile } from "react-icons/vsc";
-import { SiTypescript } from "react-icons/si";
-import { VscDesktopDownload } from "react-icons/vsc";
+const projects = [
+  {
+    title: "Chert",
+    description: "Voice-based GIS platform for archaeological field work.",
+    gradient: "from-amber-800 via-green-800 to-emerald-900",
+    year: "2025",
+  },
+  {
+    title: "Nodal CLI",
+    description: "Hardware copilot for embedded systems and firmware.",
+    gradient: "from-slate-700 via-sky-800 to-blue-900",
+    year: "2025",
+  },
+  {
+    title: "Photon Framework",
+    description: "Building Flux for next-gen AI infrastructure.",
+    gradient: "from-orange-700 via-red-800 to-rose-900",
+    year: "2024",
+  },
+];
 
-type FileType = "README.md" | "resume" | "links.ts" | null;
+const posts = [
+  { date: "Feb 2025", title: "Building voice-first tools for field research" },
+  { date: "Jan 2025", title: "Why neuromorphic computing matters" },
+  { date: "Dec 2024", title: "Lessons from hardware-software co-design" },
+  { date: "Nov 2024", title: "Archaeology meets AI: a field report" },
+];
 
 export default function Home() {
-  const [activeFile, setActiveFile] = useState<FileType>(null);
-
-  const files = [
-    { name: "README.md" as const, icon: <VscMarkdown style={{ color: "var(--blue)" }} /> },
-    { name: "resume" as const, icon: <VscFile style={{ color: "var(--base01)" }} /> },
-    { name: "links.ts" as const, icon: <SiTypescript style={{ color: "var(--blue)" }} /> },
-  ];
-
-  const handleEditorClick = () => {
-    setActiveFile(null);
-  };
-
   return (
-    <div
-      className="h-screen overflow-hidden flex flex-col"
-      style={{ backgroundColor: "var(--bg-main)", color: "var(--fg-main)" }}
-    >
-      {/* Mobile view - README only */}
-      <div className="md:hidden h-full flex flex-col">
-        <header
-          className="flex items-center justify-between px-4 py-2"
-          style={{
-            backgroundColor: "var(--bg-alt)",
-            borderBottom: "1px solid var(--border-subtle)",
-            color: "var(--fg-strong)"
-          }}
-        >
-          <div className="flex items-center gap-2 text-xs">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--red)" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--yellow)" }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--green)" }} />
-            <span className="ml-3 font-semibold" style={{ color: "var(--cyan)" }}>
-              gary-tui
+    <div className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text-primary)" }}>
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5" style={{ backgroundColor: "var(--bg)" }}>
+        <div className="flex items-center gap-5">
+          <span className="text-lg font-bold" style={{ color: "var(--accent)" }}>GG</span>
+          <span style={{ color: "var(--border)" }}>|</span>
+          <div className="flex items-center gap-5 text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
+            <a href="#about" className="transition-colors hover:text-[#111]">About</a>
+            <a href="#work" className="transition-colors hover:text-[#111]">Work</a>
+            <a href="#posts" className="transition-colors hover:text-[#111]">Posts</a>
+          </div>
+        </div>
+        <div className="flex items-center gap-4" style={{ color: "var(--text-secondary)" }}>
+          <a href="https://github.com/garygao333" target="_blank" rel="noreferrer" className="transition-colors hover:text-[#111]" aria-label="GitHub">
+            <FaGithub size={18} />
+          </a>
+          <a href="https://linkedin.com/in/garygao" target="_blank" rel="noreferrer" className="transition-colors hover:text-[#111]" aria-label="LinkedIn">
+            <FaLinkedinIn size={18} />
+          </a>
+          <a href="mailto:garygao@wharton.upenn.edu" className="transition-colors hover:text-[#111]" aria-label="Email">
+            <HiOutlineMail size={20} />
+          </a>
+        </div>
+      </nav>
+
+      {/* Main content */}
+      <main className="max-w-[840px] mx-auto px-6 md:px-12">
+        {/* Hero */}
+        <section className="pt-36 pb-8">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-none -ml-1 md:-ml-1.5">
+            Gary Gao
+          </h1>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-5 gap-2">
+            <p className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
+              CS + Wharton @ Penn
+            </p>
+            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+              <span style={{ color: "var(--accent)" }}>&#x1F4CD;</span> Philadelphia
+            </p>
+          </div>
+        </section>
+
+        {/* About */}
+        <section id="about" className="py-10">
+          <p className="text-base leading-relaxed" style={{ color: "var(--text-primary)" }}>
+            Hi there! I&apos;m Gary, a student at Penn studying CS and Wharton. I like building at the
+            edge of deep tech &mdash; AI, neuromorphic hardware, archaeology, and robotics. I&apos;m driven by
+            a love for creativity and innovation, constantly exploring new ways to connect ideas and build
+            something meaningful.
+          </p>
+          <p className="text-base leading-relaxed mt-5" style={{ color: "var(--text-primary)" }}>
+            When I&apos;m not immersed in my projects, you&apos;ll find me outdoors &mdash; flying planes,
+            hiking trails, and embracing the energy of nature. Life is all about climbing to new heights,
+            both literally and figuratively!
+          </p>
+        </section>
+
+        {/* Latest Projects */}
+        <section id="work" className="pt-10 pb-6">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="text-2xl font-bold">Latest Projects</h2>
+            <span className="text-sm cursor-pointer transition-colors hover:text-[#111]" style={{ color: "var(--text-secondary)" }}>
+              View all
             </span>
           </div>
-          <div className="text-xs" style={{ color: "var(--fg-muted)" }}>
-            README.md
-          </div>
-        </header>
-        <div className="flex-1 overflow-y-auto p-6">
-          <ReadmeContent />
-        </div>
-        <div
-          className="flex items-center justify-center gap-2 px-4 py-3 text-xs"
-          style={{
-            backgroundColor: "var(--bg-alt)",
-            borderTop: "1px solid var(--border-subtle)",
-            color: "var(--fg-muted)"
-          }}
-        >
-          <VscDesktopDownload style={{ color: "var(--cyan)" }} />
-          <span>View full terminal experience on desktop</span>
-        </div>
-      </div>
+          <div className="h-px mb-8" style={{ backgroundColor: "var(--accent)" }} />
 
-      {/* Desktop view - Full TUI */}
-      <div className="hidden md:flex md:flex-col h-full">
-      {/* Top bar */}
-      <header
-        className="flex items-center justify-between px-4 py-2"
-        style={{
-          backgroundColor: "var(--bg-alt)",
-          borderBottom: "1px solid var(--border-subtle)",
-          color: "var(--fg-strong)"
-        }}
-      >
-        <div className="flex items-center gap-2 text-xs">
-          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--red)" }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--yellow)" }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--green)" }} />
-          <span className="ml-3 font-semibold" style={{ color: "var(--cyan)" }}>
-            gary-tui
-          </span>
-        </div>
-        <div className="text-xs hidden sm:block" style={{ color: "var(--fg-muted)" }}>
-          ~/portfolio/terminal
-        </div>
-        <div className="text-xs" style={{ color: "var(--fg-muted)" }}>
-          TUI MODE
-        </div>
-      </header>
-
-      {/* Main layout: sidebar + main pane */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside
-          className="hidden md:flex w-60 flex-col"
-          style={{
-            backgroundColor: "var(--bg-elevated)",
-            borderRight: "1px solid var(--border-subtle)"
-          }}
-        >
-          <div
-            className="px-3 py-2 text-xs uppercase tracking-widest"
-            style={{
-              borderBottom: "1px solid var(--border-subtle)",
-              color: "var(--fg-strong)"
-            }}
-          >
-            EXPLORER
-          </div>
-          <div className="flex-1 overflow-y-auto text-xs">
-            <div
-              className="px-3 pt-2 pb-1 uppercase text-[10px] tracking-wider"
-              style={{ color: "var(--fg-strong)" }}
-            >
-              Files
-            </div>
-            <ul className="space-y-0.5">
-              {files.map((file) => (
-                <li key={file.name}>
-                  <button
-                    onClick={() => setActiveFile(file.name)}
-                    className="w-full text-left px-3 py-1.5 flex items-center gap-2 transition-colors"
-                    style={{
-                      color: activeFile === file.name ? "var(--fg-strong)" : "var(--fg-muted)",
-                      backgroundColor: activeFile === file.name ? "rgba(0, 43, 54, 0.8)" : "transparent",
-                      borderLeft: activeFile === file.name ? "2px solid var(--accent-primary)" : "2px solid transparent"
-                    }}
-                    onMouseEnter={(e) => {
-                      if (activeFile !== file.name) {
-                        e.currentTarget.style.backgroundColor = "rgba(7, 54, 66, 0.5)";
-                        e.currentTarget.style.color = "var(--fg-main)";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (activeFile !== file.name) {
-                        e.currentTarget.style.backgroundColor = "transparent";
-                        e.currentTarget.style.color = "var(--fg-muted)";
-                      }
-                    }}
-                  >
-                    <span>{file.icon}</span>
-                    <span>{file.name}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div
-            className="px-3 py-2 text-[10px]"
-            style={{
-              borderTop: "1px solid var(--border-subtle)",
-              color: "var(--fg-muted)"
-            }}
-          >
-            Click a file to view
-          </div>
-        </aside>
-
-        {/* Main panel */}
-        <main className="flex-1 flex flex-col">
-          {/* Editor area (blank or file content) */}
-          <div
-            className="flex-1 min-h-0 overflow-hidden cursor-default"
-            style={{ backgroundColor: "var(--bg-main)" }}
-            onClick={handleEditorClick}
-          >
-            {activeFile ? (
-              <FileViewer activeFile={activeFile} onClose={() => setActiveFile(null)} />
-            ) : (
-              <div
-                className="h-full flex items-center justify-center text-sm"
-                style={{ color: "var(--fg-muted)" }}
-              >
-                <div className="text-center">
-                  <p>Select a file from the explorer</p>
-                  <p className="text-xs mt-1" style={{ color: "var(--base01)", opacity: 0.7 }}>
-                    or use the terminal below
-                  </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {projects.map((project) => (
+              <div key={project.title} className="group cursor-pointer">
+                <div className={`relative aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br ${project.gradient}`}>
+                  <span className="absolute top-4 left-5 text-5xl font-black text-white/30">
+                    {project.year}
+                  </span>
                 </div>
+                <h3 className="mt-3 font-bold text-sm">{project.title}</h3>
+                <p className="text-sm mt-1 leading-snug" style={{ color: "var(--text-secondary)" }}>
+                  {project.description}
+                </p>
               </div>
-            )}
+            ))}
           </div>
+        </section>
 
-          {/* Resizable Terminal Panel */}
-          <ResizableTerminalPanel />
-        </main>
-      </div>
-      </div>
+        {/* Latest Posts */}
+        <section id="posts" className="pt-14 pb-6">
+          <div className="flex items-center justify-between mb-1">
+            <h2 className="text-2xl font-bold">Latest Posts</h2>
+            <span className="text-sm cursor-pointer transition-colors hover:text-[#111]" style={{ color: "var(--text-secondary)" }}>
+              View all
+            </span>
+          </div>
+          <div className="h-px mb-6" style={{ backgroundColor: "var(--accent)" }} />
+
+          <div className="divide-y" style={{ borderColor: "var(--border)" }}>
+            {posts.map((post, i) => (
+              <div key={i} className="flex items-center gap-6 py-4 cursor-pointer group">
+                <span className="text-sm w-24 shrink-0" style={{ color: "var(--text-muted)" }}>
+                  {post.date}
+                </span>
+                <span className="text-sm font-medium group-hover:text-[var(--accent)] transition-colors">
+                  {post.title}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Newsletter */}
+        <section className="py-14">
+          <div className="rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-8" style={{ backgroundColor: "var(--bg-card)" }}>
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold mb-4">Subscribe to my Newsletter</h2>
+              <div className="flex gap-2 mb-3">
+                <input
+                  type="email"
+                  placeholder="name@email.com"
+                  className="flex-1 px-4 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] transition-colors"
+                  style={{
+                    backgroundColor: "white",
+                    borderColor: "var(--border)",
+                    color: "var(--text-primary)",
+                  }}
+                />
+                <button
+                  className="px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: "var(--text-primary)" }}
+                >
+                  Subscribe
+                </button>
+              </div>
+              <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+                Sign up to stay updated about my latest work and adventures. <em>No Spam, No BS. Promise!</em>
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-[840px] mx-auto px-6 md:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+            &copy; Gary Gao | 2025
+          </p>
+          <div className="flex items-center gap-5 text-sm" style={{ color: "var(--text-secondary)" }}>
+            <a href="#" className="transition-colors" style={{ color: "var(--accent)" }}>Home</a>
+            <a href="#about" className="transition-colors hover:text-[#111]">About</a>
+            <a href="#work" className="transition-colors hover:text-[#111]">Work</a>
+            <a href="#posts" className="transition-colors hover:text-[#111]">Posts</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
