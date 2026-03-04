@@ -85,16 +85,11 @@ export default function Home() {
         {/* About */}
         <section id="about" className="py-10">
           <p className="text-base leading-relaxed" style={{ color: "var(--text-primary)" }}>
-            Hi there! I&apos;m Gary, a student at Penn studying CS and Wharton. I like building at the
-            edge of deep tech &mdash; AI, neuromorphic hardware, archaeology, and robotics. I&apos;m driven by
-            a love for creativity and innovation, constantly exploring new ways to connect ideas and build
-            something meaningful.
+            Currently buidling Chert, an AI BDR that gets businesses customers through iMessage. Previously studying Computer Science and Business at Penn and Wharton. Researching in statistical mechanics (physical learning networks) and machine learning (pottery sherd classification).
           </p>
-          <p className="text-base leading-relaxed mt-5" style={{ color: "var(--text-primary)" }}>
-            When I&apos;m not immersed in my projects, you&apos;ll find me outdoors &mdash; flying planes,
-            hiking trails, and embracing the energy of nature. Life is all about climbing to new heights,
-            both literally and figuratively!
-          </p>
+          {/* <p className="text-base leading-relaxed mt-5" style={{ color: "var(--text-primary)" }}>
+            Outside of 
+          </p> */}
         </section>
 
         {/* Latest Projects */}
