@@ -1,5 +1,4 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import { HiOutlineMail } from "react-icons/hi";
 
 const projects = [
@@ -34,24 +33,15 @@ export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text-primary)" }}>
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5" style={{ backgroundColor: "var(--bg)" }}>
-        <div className="flex items-center gap-5">
-          <span className="text-lg font-bold" style={{ color: "var(--accent)" }}>GG</span>
-          <span style={{ color: "var(--border)" }}>|</span>
-          <div className="flex items-center gap-5 text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
-            <a href="#about" className="transition-colors hover:text-[#111]">About</a>
-            <a href="#work" className="transition-colors hover:text-[#111]">Work</a>
-            <a href="#posts" className="transition-colors hover:text-[#111]">Posts</a>
-          </div>
-        </div>
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-end px-6 md:px-12 py-5" style={{ backgroundColor: "var(--bg)" }}>
         <div className="flex items-center gap-4" style={{ color: "var(--text-secondary)" }}>
           <a href="https://github.com/garygao333" target="_blank" rel="noreferrer" className="transition-colors hover:text-[#111]" aria-label="GitHub">
             <FaGithub size={18} />
           </a>
-          <a href="https://linkedin.com/in/garygao" target="_blank" rel="noreferrer" className="transition-colors hover:text-[#111]" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/garygao333/" target="_blank" rel="noreferrer" className="transition-colors hover:text-[#111]" aria-label="LinkedIn">
             <FaLinkedinIn size={18} />
           </a>
-          <a href="mailto:garygao@wharton.upenn.edu" className="transition-colors hover:text-[#111]" aria-label="Email">
+          <a href="mailto:gary@trychert.com" className="transition-colors hover:text-[#111]" aria-label="Email">
             <HiOutlineMail size={20} />
           </a>
         </div>
@@ -69,7 +59,7 @@ export default function Home() {
               Co-Founder @ Chert | CS + Wharton @ Penn | Z-Fellow
             </p>
             <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-              <span style={{ color: "var(--accent)" }}>&#x1F4CD;</span> Philadelphia
+              <span style={{ color: "var(--accent)" }}>&#x1F4CD;</span> San Francisco
             </p>
           </div>
         </section>
@@ -91,11 +81,8 @@ export default function Home() {
 
         {/* Latest Projects */}
         <section id="work" className="pt-10 pb-6">
-          <div className="flex items-center justify-between mb-1">
-            <h2 className="text-2xl font-bold">Latest Projects</h2>
-            <span className="text-sm cursor-pointer transition-colors hover:text-[#111]" style={{ color: "var(--text-secondary)" }}>
-              View all
-            </span>
+          <div className="mb-1">
+            <h2 className="text-2xl font-bold">Projects and Experiences</h2>
           </div>
           <div className="h-px mb-8" style={{ backgroundColor: "var(--accent)" }} />
 
