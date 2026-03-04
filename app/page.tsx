@@ -1,24 +1,49 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
+import { ProjectGallery } from "./components/ProjectGallery";
 
 const projects = [
   {
     title: "Chert",
-    description: "Voice-based GIS platform for archaeological field work.",
+    description: "Voice-based GIS for archaeology.",
+    details: "A voice-first GIS data collection platform used by archaeological field projects. Built with Next.js, Python, PostgreSQL, and GIS tooling.",
     gradient: "from-amber-800 via-green-800 to-emerald-900",
     year: "2025",
   },
   {
     title: "Nodal CLI",
-    description: "Hardware copilot for embedded systems and firmware.",
+    description: "Hardware copilot for embedded systems.",
+    details: "CLI that generates wiring diagrams, firmware, and host code for Arduino and ESP32. Built with Node.js and TypeScript.",
     gradient: "from-slate-700 via-sky-800 to-blue-900",
     year: "2025",
   },
   {
     title: "Photon Framework",
-    description: "Building Flux for next-gen AI infrastructure.",
+    description: "Building Flux for AI infrastructure.",
+    details: "Next-gen framework for building and deploying AI infrastructure at scale. Exploring new paradigms in model serving and orchestration.",
     gradient: "from-orange-700 via-red-800 to-rose-900",
     year: "2024",
+  },
+  {
+    title: "Outbound via iMessage",
+    description: "Automated outbound messaging at scale.",
+    details: "Built an outbound sales and communication platform leveraging iMessage for high-deliverability outreach.",
+    gradient: "from-green-600 via-teal-700 to-cyan-800",
+    year: "2024",
+  },
+  {
+    title: "Neuromorphic Chips",
+    description: "Building brain-inspired computing hardware.",
+    details: "Researching and building neuromorphic chip architectures that mimic biological neural networks for efficient, low-power computation.",
+    gradient: "from-violet-700 via-purple-800 to-indigo-900",
+    year: "2024",
+  },
+  {
+    title: "Pottery Sherd Classification",
+    description: "AI-powered archaeological artifact analysis.",
+    details: "Built a classification model for pottery sherds using computer vision, helping archaeologists identify and catalog artifacts in the field.",
+    gradient: "from-yellow-700 via-amber-800 to-orange-900",
+    year: "2023",
   },
 ];
 
@@ -86,21 +111,7 @@ export default function Home() {
           </div>
           <div className="h-px mb-8" style={{ backgroundColor: "var(--accent)" }} />
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {projects.map((project) => (
-              <div key={project.title} className="group cursor-pointer">
-                <div className={`relative aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br ${project.gradient}`}>
-                  <span className="absolute top-4 left-5 text-5xl font-black text-white/30">
-                    {project.year}
-                  </span>
-                </div>
-                <h3 className="mt-3 font-bold text-sm">{project.title}</h3>
-                <p className="text-sm mt-1 leading-snug" style={{ color: "var(--text-secondary)" }}>
-                  {project.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          <ProjectGallery projects={projects} />
         </section>
 
         {/* Latest Posts */}
