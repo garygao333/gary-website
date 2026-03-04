@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 type Project = {
   title: string;
@@ -10,61 +10,89 @@ type Project = {
   year: string;
 };
 
-const rotations = ["-1.5deg", "1deg", "-0.8deg", "1.2deg", "-1deg", "0.7deg"];
-
 export const ProjectGallery = ({ projects }: { projects: Project[] }) => {
-  const [expanded, setExpanded] = useState<number | null>(null);
+  const [expanded, setExpanded] = useState<number>(0);
+  const [paused, setPaused] = useState(false);
+
+  const next = useCallback(() => {
+    setExpanded((prev) => (prev + 1) % projects.length);
+  }, [projects.length]);
+
+  // Auto-rotate every 3s unless user paused it
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(next, 3000);
+    return () => clearInterval(timer);
+  }, [paused, next]);
+
+  const handleClick = (i: number) => {
+    setExpanded(i);
+    setPaused(true);
+    // Resume auto-rotation after 8s of inactivity
+    setTimeout(() => setPaused(false), 8000);
+  };
 
   return (
     <div className="grid grid-cols-3 gap-1">
       {projects.map((project, i) => {
         const isExpanded = expanded === i;
-        const rotation = rotations[i % rotations.length];
 
         return (
           <div
             key={project.title}
             className="relative cursor-pointer"
             style={{ zIndex: isExpanded ? 10 : 1 }}
-            onClick={() => setExpanded(isExpanded ? null : i)}
+            onClick={() => handleClick(i)}
           >
             <div
-              className={`relative aspect-square rounded-lg overflow-hidden bg-gradient-to-br ${project.gradient} transition-all duration-300 ease-out`}
+              className={`relative aspect-square rounded-lg overflow-hidden bg-gradient-to-br ${project.gradient} transition-all duration-500 ease-out`}
               style={{
-                transform: isExpanded
-                  ? "rotate(0deg) scale(1.08)"
-                  : `rotate(${rotation}) scale(1)`,
+                transform: isExpanded ? "scale(1.06)" : "scale(1)",
                 boxShadow: isExpanded
                   ? "0 12px 32px rgba(0,0,0,0.25)"
-                  : "0 1px 3px rgba(0,0,0,0.1)",
+                  : "0 1px 3px rgba(0,0,0,0.08)",
               }}
             >
               <span className="absolute top-3 left-3 text-4xl font-black text-white/20">
                 {project.year}
               </span>
 
-              {/* Overlay — always visible when expanded, hover on default */}
+              {/* Gradient overlay */}
               <div
-                className={`absolute inset-0 flex flex-col justify-end p-3 transition-opacity duration-300 ${
-                  isExpanded
-                    ? "opacity-100"
-                    : "opacity-0 hover:opacity-100"
-                }`}
+                className="absolute inset-0 flex flex-col justify-end p-3 transition-opacity duration-500"
                 style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%)",
+                  background: isExpanded
+                    ? "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%)"
+                    : "linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 40%)",
+                  opacity: 1,
                 }}
               >
-                <span className="text-white text-xs font-bold leading-tight">
+                {/* Title — always visible */}
+                <span
+                  className="text-white font-bold leading-tight transition-all duration-500"
+                  style={{
+                    fontSize: isExpanded ? "13px" : "11px",
+                    opacity: isExpanded ? 1 : 0.7,
+                  }}
+                >
                   {project.title}
                 </span>
-                <span className="text-white/70 text-[11px] leading-tight mt-0.5">
-                  {project.description}
-                </span>
-                {isExpanded && (
-                  <span className="text-white/60 text-[11px] leading-snug mt-1.5">
+
+                {/* Description + details — expand in */}
+                <div
+                  className="overflow-hidden transition-all duration-500"
+                  style={{
+                    maxHeight: isExpanded ? "100px" : "0px",
+                    opacity: isExpanded ? 1 : 0,
+                  }}
+                >
+                  <span className="text-white/70 text-[11px] leading-tight block mt-0.5">
+                    {project.description}
+                  </span>
+                  <span className="text-white/50 text-[11px] leading-snug block mt-1">
                     {project.details}
                   </span>
-                )}
+                </div>
               </div>
             </div>
           </div>

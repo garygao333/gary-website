@@ -47,13 +47,6 @@ const projects = [
   },
 ];
 
-const posts = [
-  { date: "Feb 2025", title: "Building voice-first tools for field research" },
-  { date: "Jan 2025", title: "Why neuromorphic computing matters" },
-  { date: "Dec 2024", title: "Lessons from hardware-software co-design" },
-  { date: "Nov 2024", title: "Archaeology meets AI: a field report" },
-];
-
 export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text-primary)" }}>
@@ -114,73 +107,33 @@ export default function Home() {
           <ProjectGallery projects={projects} />
         </section>
 
-        {/* Latest Posts */}
+        {/* Writing */}
         <section id="posts" className="pt-14 pb-6">
-          <div className="flex items-center justify-between mb-1">
-            <h2 className="text-2xl font-bold">Latest Posts</h2>
-            <span className="text-sm cursor-pointer transition-colors hover:text-[#111]" style={{ color: "var(--text-secondary)" }}>
-              View all
-            </span>
+          <div className="mb-1">
+            <h2 className="text-2xl font-bold">Writing</h2>
           </div>
           <div className="h-px mb-6" style={{ backgroundColor: "var(--accent)" }} />
-
-          <div className="divide-y" style={{ borderColor: "var(--border)" }}>
-            {posts.map((post, i) => (
-              <div key={i} className="flex items-center gap-6 py-4 cursor-pointer group">
-                <span className="text-sm w-24 shrink-0" style={{ color: "var(--text-muted)" }}>
-                  {post.date}
-                </span>
-                <span className="text-sm font-medium group-hover:text-[var(--accent)] transition-colors">
-                  {post.title}
-                </span>
-              </div>
-            ))}
+          <div className="flex items-center gap-6 py-4">
+            <span className="text-sm shrink-0" style={{ color: "var(--text-muted)" }}>
+              2025
+            </span>
+            <a
+              href="/writing"
+              className="text-sm font-medium transition-colors hover:text-[var(--accent)]"
+            >
+              The Chert Thesis
+            </a>
           </div>
         </section>
 
-        {/* Newsletter */}
-        <section className="py-14">
-          <div className="rounded-2xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-8" style={{ backgroundColor: "var(--bg-card)" }}>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold mb-4">Subscribe to my Newsletter</h2>
-              <div className="flex gap-2 mb-3">
-                <input
-                  type="email"
-                  placeholder="name@email.com"
-                  className="flex-1 px-4 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] transition-colors"
-                  style={{
-                    backgroundColor: "white",
-                    borderColor: "var(--border)",
-                    color: "var(--text-primary)",
-                  }}
-                />
-                <button
-                  className="px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "var(--text-primary)" }}
-                >
-                  Subscribe
-                </button>
-              </div>
-              <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-                Sign up to stay updated about my latest work and adventures. <em>No Spam, No BS. Promise!</em>
-              </p>
-            </div>
-          </div>
-        </section>
       </main>
 
       {/* Footer */}
       <footer className="border-t" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-[840px] mx-auto px-6 md:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-[840px] mx-auto px-6 md:px-12 py-6">
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>
             &copy; Gary Gao | 2025
           </p>
-          <div className="flex items-center gap-5 text-sm" style={{ color: "var(--text-secondary)" }}>
-            <a href="#" className="transition-colors" style={{ color: "var(--accent)" }}>Home</a>
-            <a href="#about" className="transition-colors hover:text-[#111]">About</a>
-            <a href="#work" className="transition-colors hover:text-[#111]">Work</a>
-            <a href="#posts" className="transition-colors hover:text-[#111]">Posts</a>
-          </div>
         </div>
       </footer>
     </div>
