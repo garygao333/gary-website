@@ -66,7 +66,7 @@ export default function Home() {
           </h1>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-5 gap-2">
             <p className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
-              CS + Wharton @ Penn
+              Co-Founder @ Chert | CS + Wharton @ Penn | Z-Fellow
             </p>
             <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
               <span style={{ color: "var(--accent)" }}>&#x1F4CD;</span> Philadelphia
