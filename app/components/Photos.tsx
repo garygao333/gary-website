@@ -9,17 +9,17 @@ type Photo = {
 
 // Drop your images in public/photos/ with these filenames (or edit the list).
 const photos: Photo[] = [
-  { src: "/photos/1.jpg", caption: "San Francisco" },
-  { src: "/photos/2.jpg", caption: "Building Chert" },
-  { src: "/photos/3.jpg", caption: "Fieldwork" },
-  { src: "/photos/4.jpg", caption: "Penn" },
+  { src: "/photos/p26-demo-day.jpg", caption: "YC Demo Day" },
+  { src: "/photos/p26-batch.jpg", caption: "YC P26" },
+  { src: "/photos/nodal.png", caption: "Nodal" },
+  { src: "/photos/sherd.png", caption: "Sherd classification" },
 ];
 
 function PhotoTile({ photo }: { photo: Photo }) {
   const [errored, setErrored] = useState(false);
 
   return (
-    <figure className="group relative aspect-[4/5] overflow-hidden rounded-lg">
+    <figure className="group relative aspect-[3/2] overflow-hidden rounded-lg">
       {errored ? (
         <div
           className="flex h-full w-full items-center justify-center"
@@ -57,7 +57,7 @@ function PhotoTile({ photo }: { photo: Photo }) {
 
 export function Photos() {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
       {photos.map((photo) => (
         <PhotoTile key={photo.src} photo={photo} />
       ))}
