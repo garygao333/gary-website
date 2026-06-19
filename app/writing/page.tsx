@@ -1,13 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { posts } from "../posts";
+import { getPosts, postYear } from "../lib/posts";
 
 export const metadata: Metadata = {
   title: "Writing — Gary Gao",
   description: "Essays on AI agents, trust, and building.",
 };
 
-export default function Writing() {
+export default async function Writing() {
+  const posts = await getPosts();
   return (
     <div className="min-h-screen">
       <main className="mx-auto max-w-[680px] px-6 pt-20 pb-24 md:px-8 md:pt-28">
@@ -35,7 +36,7 @@ export default function Writing() {
                 style={{ borderColor: "var(--border)" }}
               >
                 <span className="shrink-0 text-sm tabular-nums" style={{ color: "var(--text-muted)" }}>
-                  {post.year}
+                  {postYear(post)}
                 </span>
                 <span className="flex-1">
                   <span className="font-display text-xl transition-colors group-hover:text-[var(--accent)]">

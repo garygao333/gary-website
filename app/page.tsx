@@ -3,13 +3,14 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { Photos } from "./components/Photos";
 import { Portrait } from "./components/Portrait";
-import { posts } from "./posts";
+import { getPosts, postYear } from "./lib/posts";
 
-export default function Home() {
+export default async function Home() {
+  const posts = await getPosts();
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 backdrop-blur-sm" style={{ backgroundColor: "rgba(244,239,230,0.8)" }}>
+      <nav className="sticky top-0 z-50 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.85)" }}>
         <div className="mx-auto flex max-w-[720px] items-center justify-between px-6 py-5 md:px-8">
           <Link href="/" className="font-display text-lg font-semibold tracking-tight">
             Gary Gao
@@ -64,7 +65,7 @@ export default function Home() {
               All posts &rarr;
             </Link>
           </div>
-          <div className="mt-3 h-px" style={{ backgroundColor: "var(--accent)" }} />
+          <div className="mt-3 h-px" style={{ backgroundColor: "var(--rule)" }} />
 
           <ul className="mt-2">
             {posts.map((post) => (
@@ -75,7 +76,7 @@ export default function Home() {
                   style={{ borderColor: "var(--border)" }}
                 >
                   <span className="shrink-0 text-sm tabular-nums" style={{ color: "var(--text-muted)" }}>
-                    {post.year}
+                    {postYear(post)}
                   </span>
                   <span className="flex-1">
                     <span className="font-display text-lg transition-colors group-hover:text-[var(--accent)]">
@@ -94,7 +95,7 @@ export default function Home() {
         {/* Photos */}
         <section id="photos" className="py-12">
           <h2 className="font-display text-2xl font-normal">Photos</h2>
-          <div className="mt-3 mb-6 h-px" style={{ backgroundColor: "var(--accent)" }} />
+          <div className="mt-3 mb-6 h-px" style={{ backgroundColor: "var(--rule)" }} />
           <Photos />
         </section>
       </main>
