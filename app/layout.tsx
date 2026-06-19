@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,9 +7,16 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  axes: ["opsz", "SOFT", "WONK"],
+});
+
 export const metadata: Metadata = {
   title: "Gary Gao",
-  description: "Gary Gao - CS + Wharton @ Penn",
+  description:
+    "Gary Gao — co-founder of Chert. Writing on AI agents, trust, and building.",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -24,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${inter.variable} ${fraunces.variable} antialiased`}>
         {children}
       </body>
     </html>

@@ -1,52 +1,54 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { posts } from "../posts";
+
+export const metadata: Metadata = {
+  title: "Writing — Gary Gao",
+  description: "Essays on AI agents, trust, and building.",
+};
 
 export default function Writing() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--bg)", color: "var(--text-primary)" }}>
-      <main className="max-w-[640px] mx-auto px-6 md:px-12 pt-20 md:pt-28 pb-20">
+    <div className="min-h-screen">
+      <main className="mx-auto max-w-[680px] px-6 pt-20 pb-24 md:px-8 md:pt-28">
         <Link
           href="/"
           className="text-sm transition-colors hover:text-[var(--accent)]"
           style={{ color: "var(--text-muted)" }}
         >
-          &larr; Back
+          &larr; Gary Gao
         </Link>
 
-        <h1 className="text-3xl md:text-4xl font-black tracking-tight mt-10 mb-12">
-          The Chert Thesis
+        <h1 className="mt-10 font-display text-4xl font-light tracking-tight md:text-5xl">
+          Writing
         </h1>
+        <p className="mt-3 text-[17px]" style={{ color: "var(--text-muted)" }}>
+          Essays on AI agents, trust, and building.
+        </p>
 
-        <div className="space-y-6 text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-          <p>
-            We believe that AI agents have an <strong style={{ color: "var(--text-primary)" }}>untapped potential</strong>.
-          </p>
-
-          <p>
-            Right now, agents like Manus or Poke are seen as powerful but only limited to the role of personal assistants.
-          </p>
-
-          <p>
-            For AI agents to truly integrate into human society, they need to take on{" "}
-            <strong style={{ color: "var(--text-primary)" }}>independent, human roles</strong>, whether as sales reps or customer support agents.
-          </p>
-
-          <p>
-            And for that to happen, agents need a{" "}
-            <strong style={{ color: "var(--text-primary)" }}>layer of trust</strong>{" "}
-            that they currently lack. People shouldn&apos;t feel uneasy when they are talking to an AI. They should feel comfortable.
-          </p>
-
-          <p>
-            <strong style={{ color: "var(--text-primary)" }}>
-              We are interested in building this emotional layer of trust between humans and AI.
-            </strong>
-          </p>
-
-          <p>
-            And that&apos;s what we believe will be the major shift that will grow the AI agent market from an 8B industry to a 50B industry in the next three years. We imagine a future where agents become treated as{" "}
-            <strong style={{ color: "var(--text-primary)" }}>friends, co-workers, and people instead of tools</strong>.
-          </p>
-        </div>
+        <ul className="mt-12">
+          {posts.map((post) => (
+            <li key={post.slug}>
+              <Link
+                href={`/writing/${post.slug}`}
+                className="group flex flex-col gap-1 border-t py-6 sm:flex-row sm:items-baseline sm:gap-6"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <span className="shrink-0 text-sm tabular-nums" style={{ color: "var(--text-muted)" }}>
+                  {post.year}
+                </span>
+                <span className="flex-1">
+                  <span className="font-display text-xl transition-colors group-hover:text-[var(--accent)]">
+                    {post.title}
+                  </span>
+                  <span className="mt-1 block text-[15px] leading-relaxed" style={{ color: "var(--text-muted)" }}>
+                    {post.excerpt}
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   );
