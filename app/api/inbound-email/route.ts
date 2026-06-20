@@ -87,9 +87,19 @@ export async function POST(req: Request) {
   const attachments = (email.attachments ?? []) as ReceivedAttachment[];
   const cidToUrl = new Map<string, string>();
   const trailingImageUrls: string[] = [];
+  const sourceHtml = email.html ?? "";
 
   for (const att of attachments) {
     if (!att.content_type?.startsWith("image/")) continue;
+
+    // Is this attachment actually referenced by cid: in the HTML? Gmail embeds
+    // inline images as base64 data: URIs in the body *and* re-sends them as
+    // inline attachments. We rewrite the data: URIs in step 6, so uploading
+    // the duplicate attachment here would just orphan an unused file.
+    const bareCid = att.content_id?.replace(/^<|>$/g, "");
+    const cidReferenced = !!bareCid && sourceHtml.includes(`cid:${bareCid}`);
+    if (att.content_disposition === "inline" && !cidReferenced) continue;
+
     try {
       const { data: full } = await resend.emails.receiving.attachments.get({
         id: att.id,
@@ -99,24 +109,17 @@ export async function POST(req: Request) {
       if (!downloadUrl) continue;
 
       const bytes = Buffer.from(await (await fetch(downloadUrl)).arrayBuffer());
-      const { buffer, contentType, ext } = await normalizeImage(
+      const url = await storeImage(
+        admin,
+        baseSlug,
+        att.id.slice(0, 8),
         bytes,
         att.content_type,
+        att.filename ?? att.id,
       );
 
-      const name = `${slugify(stripExt(att.filename ?? att.id))}.${ext}`;
-      const path = `${baseSlug}/${att.id.slice(0, 8)}-${name}`;
-
-      const { error: upErr } = await admin.storage
-        .from("post-images")
-        .upload(path, buffer, { contentType, upsert: true });
-      if (upErr) throw new Error(upErr.message);
-
-      const url = admin.storage.from("post-images").getPublicUrl(path).data
-        .publicUrl;
-
-      if (att.content_disposition === "inline" && att.content_id) {
-        cidToUrl.set(att.content_id, url);
+      if (cidReferenced) {
+        cidToUrl.set(att.content_id!, url);
       } else {
         trailingImageUrls.push(url);
       }
@@ -125,9 +128,15 @@ export async function POST(req: Request) {
     }
   }
 
-  // 6. Build the verbatim, sanitized post body.
+  // 6. Inline images embedded directly in the HTML as data: URIs (Gmail and
+  //    others do this instead of cid:) → upload and rewrite src to hosted URL.
+  const htmlWithImages = sourceHtml
+    ? await inlineDataImages(sourceHtml, admin, baseSlug)
+    : "";
+
+  // 7. Build the verbatim, sanitized post body.
   const bodyHtml = buildBodyHtml({
-    html: email.html ?? null,
+    html: htmlWithImages || null,
     text: email.text ?? null,
     cidToUrl,
     trailingImageUrls,
@@ -135,7 +144,7 @@ export async function POST(req: Request) {
 
   if (!bodyHtml) return bad(422, "Empty email body");
 
-  // 7. Ensure a unique slug, then insert.
+  // 8. Ensure a unique slug, then insert.
   let slug = baseSlug;
   const { data: slugClash } = await admin
     .from("posts")
@@ -154,7 +163,7 @@ export async function POST(req: Request) {
   });
   if (insErr) return bad(500, `Insert failed: ${insErr.message}`);
 
-  // 8. Invalidate the cached listing so the post appears immediately.
+  // 9. Invalidate the cached listing so the post appears immediately.
   revalidateTag("posts", "max");
 
   return NextResponse.json({ ok: true, slug, url: `/writing/${slug}` });
@@ -162,6 +171,67 @@ export async function POST(req: Request) {
 
 function stripExt(name: string): string {
   return name.replace(/\.[^./\\]+$/, "");
+}
+
+// Normalize + upload one image to the post-images bucket; returns its public URL.
+async function storeImage(
+  admin: ReturnType<typeof supabaseAdmin>,
+  baseSlug: string,
+  key: string,
+  bytes: Buffer,
+  contentType: string,
+  nameHint: string,
+): Promise<string> {
+  const { buffer, contentType: ct, ext } = await normalizeImage(
+    bytes,
+    contentType,
+  );
+  const name = `${slugify(stripExt(nameHint))}.${ext}`;
+  const path = `${baseSlug}/${key}-${name}`;
+  // Upload a Blob, NOT a raw Buffer. On web-standard runtimes (Vercel) the
+  // storage client builds a FormData and a Node Buffer appended to FormData is
+  // coerced to a UTF-8 string — silently corrupting the binary. A Blob is sent
+  // as binary on every runtime.
+  const blob = new Blob([new Uint8Array(buffer)], { type: ct });
+  const { error } = await admin.storage
+    .from("post-images")
+    .upload(path, blob, { contentType: ct, upsert: true });
+  if (error) throw new Error(error.message);
+  return admin.storage.from("post-images").getPublicUrl(path).data.publicUrl;
+}
+
+// Rewrite <img src="data:image/...;base64,..."> references to hosted URLs by
+// uploading the decoded bytes. Non-data srcs (https, cid:) are left untouched.
+async function inlineDataImages(
+  html: string,
+  admin: ReturnType<typeof supabaseAdmin>,
+  baseSlug: string,
+): Promise<string> {
+  const imgTags = html.match(/<img\b[^>]*>/gi) ?? [];
+  let out = html;
+  let i = 0;
+  for (const tag of imgTags) {
+    const src = tag.match(/src="(data:(image\/[a-z0-9.+-]+);base64,([^"]+))"/i);
+    if (!src) continue;
+    const [, dataUri, mime, b64] = src;
+    const alt = tag.match(/alt="([^"]*)"/i)?.[1];
+    try {
+      const bytes = Buffer.from(b64, "base64");
+      const url = await storeImage(
+        admin,
+        baseSlug,
+        `inline-${i}`,
+        bytes,
+        mime,
+        alt || `inline-${i}`,
+      );
+      out = out.replace(dataUri, url);
+    } catch (e) {
+      console.error("inbound-email: inline data image failed", e);
+    }
+    i++;
+  }
+  return out;
 }
 
 // Re-encode to a web-friendly format, fix EXIF rotation, cap width for perf.
