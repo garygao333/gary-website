@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 import { Webhook } from "svix";
 import { Resend } from "resend";
-import sharp from "sharp";
 import { supabaseAdmin } from "../../lib/supabase";
 import {
   buildBodyHtml,
@@ -172,6 +171,7 @@ async function normalizeImage(
   contentType: string,
 ): Promise<{ buffer: Buffer; contentType: string; ext: string }> {
   try {
+    const sharp = (await import("sharp")).default;
     const pipeline = sharp(bytes).rotate().resize({
       width: 1600,
       withoutEnlargement: true,

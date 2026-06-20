@@ -12,7 +12,7 @@ Email a post to your Resend inbound address and it publishes automatically.
 ## How it works
 
 ```
-You email <id>.resend.app
+You email <anything>@feroolkri.resend.app
    → Resend fires the email.received webhook (Svix-signed)
    → /api/inbound-email verifies signature + sender allowlist
    → fetches the full email + attachments from Resend
@@ -24,16 +24,16 @@ You email <id>.resend.app
 
 ## One-time setup (after deploying)
 
-1. **Deploy** so `https://<your-domain>/api/inbound-email` exists.
+1. **Deploy** so `https://www.garyzgao.com/api/inbound-email` exists.
 2. **Add env vars in Vercel** (Project → Settings → Environment Variables) —
    same keys as `.env.local`:
    `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
    `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`, `RESEND_WEBHOOK_SECRET`,
    `ALLOWED_SENDERS`.
-3. **Resend dashboard → Emails → Receiving:** copy your `…@<id>.resend.app`
-   receiving address.
+3. **Receiving address:** `<anything>@feroolkri.resend.app` (any local-part
+   works — e.g. `post@feroolkri.resend.app`).
 4. **Resend dashboard → Webhooks:** add a webhook pointing to
-   `https://<your-domain>/api/inbound-email`, event **`email.received`**.
+   `https://www.garyzgao.com/api/inbound-email`, event **`email.received`**.
    Copy the **Signing Secret** (`whsec_…`) into `RESEND_WEBHOOK_SECRET` (local +
    Vercel), then redeploy.
 5. **Test:** email your receiving address from an allowlisted account. The post
