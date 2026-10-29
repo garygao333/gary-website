@@ -12,12 +12,6 @@ export const featuredLinks = [
     subtitle: "An open-source framework for bringing AI agents to FaceTime audio and video calls.",
   },
   {
-    title: "Hacker News submission",
-    href: "https://news.ycombinator.com/item?id=49879337",
-    source: "Hacker News",
-    subtitle: "This submission is no longer publicly available on Hacker News.",
-  },
-  {
     title: "Chert: iMessage infrastructure for trusted communication at scale",
     href: "https://www.ycombinator.com/launches/QGN-chert-imessage-infrastructure-for-trusted-communication-at-scale",
     source: "Y Combinator",
