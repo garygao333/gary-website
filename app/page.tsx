@@ -12,8 +12,9 @@ export default function Home() {
       {/* Navigation */}
       <nav className="sticky top-0 z-50 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.85)" }}>
         <div className="mx-auto flex max-w-[720px] items-start justify-between gap-4 px-6 py-5 sm:items-center md:px-8">
-          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
-            <Link href="/" className="font-display text-lg font-semibold tracking-tight">Gary Gao</Link>
+          <Link href="/" className="shrink-0 font-display text-lg font-semibold tracking-tight">Gary Gao</Link>
+          <div className="flex flex-col items-end gap-3 sm:flex-row sm:items-center sm:gap-5">
+            <Link href="/writing" className="pt-1 text-sm transition-colors hover:text-[var(--accent)] sm:pt-0" style={{ color: "var(--text-secondary)" }}>Writing</Link>
             <div className="flex items-center gap-4" style={{ color: "var(--text-secondary)" }}>
               <a href="https://github.com/garygao333" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="GitHub"><FaGithub size={17} /></a>
               <a href="https://www.linkedin.com/in/garygao333/" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="LinkedIn"><FaLinkedinIn size={17} /></a>
@@ -22,7 +23,6 @@ export default function Home() {
               <a href="mailto:gary@trychert.com" className="transition-colors hover:text-[var(--accent)]" aria-label="Email"><HiOutlineMail size={19} /></a>
             </div>
           </div>
-          <Link href="/writing" className="pt-1 text-sm transition-colors hover:text-[var(--accent)] sm:pt-0" style={{ color: "var(--text-secondary)" }}>Writing</Link>
         </div>
       </nav>
 
@@ -54,13 +54,10 @@ export default function Home() {
         <section id="writing" className="py-4">
           <div className="flex items-baseline justify-between">
             <h2 className="font-display text-2xl font-normal">Writing</h2>
-            <Link href="/writing" className="text-sm transition-colors hover:text-[var(--accent)]" style={{ color: "var(--text-muted)" }}>
-              All links &rarr;
-            </Link>
           </div>
           <div className="mt-3 h-px" style={{ backgroundColor: "var(--rule)" }} />
 
-          <FeaturedLinks />
+          <FeaturedLinks compact />
         </section>
 
         {/* Photos */}

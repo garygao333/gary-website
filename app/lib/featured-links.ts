@@ -1,6 +1,22 @@
-export const featuredLinks = [
+export type FeaturedLink = {
+  title: string;
+  href: string;
+  source: string;
+  subtitle: string;
+  main?: boolean;
+};
+
+export const featuredLinks: FeaturedLink[] = [
+  {
+    title: "The next generation of personal agents: channel-aware agents",
+    main: true,
+    href: "https://chertnotes.substack.com/p/the-next-generation-of-personal-agents",
+    source: "Substack",
+    subtitle: "Why the channel an agent chooses (text, call, or FaceTime) is becoming the product.",
+  },
   {
     title: "Launch HN: Chert (YC P26): Twilio for iMessage",
+    main: true,
     href: "https://news.ycombinator.com/item?id=48267829",
     source: "Hacker News",
     subtitle: "An API for businesses to send, receive, and automate iMessage conversations at scale.",
@@ -13,6 +29,7 @@ export const featuredLinks = [
   },
   {
     title: "Chert: iMessage infrastructure for trusted communication at scale",
+    main: true,
     href: "https://www.ycombinator.com/launches/QGN-chert-imessage-infrastructure-for-trusted-communication-at-scale",
     source: "Y Combinator",
     subtitle: "Infrastructure for teams to send, receive, and automate conversations over iMessage using APIs.",
@@ -31,6 +48,7 @@ export const featuredLinks = [
   },
   {
     title: "Chert for FaceTime",
+    main: true,
     href: "https://www.producthunt.com/products/chert/launches/chert-2",
     source: "Product Hunt",
     subtitle: "Vapi for FaceTime: AI video agents in a few lines.",
@@ -43,6 +61,7 @@ export const featuredLinks = [
   },
   {
     title: "Old Sherds, New Tricks",
+    main: true,
     href: "https://www.penn.museum/blog/old-sherds-new-tricks/",
     source: "Penn Museum",
     subtitle: "Ancient fragments meet modern algorithms in a student research project connecting archaeology and automation.",
@@ -55,12 +74,14 @@ export const featuredLinks = [
   },
   {
     title: "Developing the Next Generation of Energy-Efficient AI Infrastructure: A Summer in the Circuits Lab",
+    main: true,
     href: "https://curf.upenn.edu/node/12113",
     source: "Penn CURF",
     subtitle: "Designing and prototyping an oscillator-based circuit that performs AI tasks with less energy.",
   },
   {
     title: "Pottery Progress",
+    main: true,
     href: "https://omnia.sas.upenn.edu/story/pottery-progress",
     source: "OMNIA",
     subtitle: "To simplify archaeological fieldwork, Benjamin Franklin scholar Gary Gao, C’28, W’28, turned to machine learning.",

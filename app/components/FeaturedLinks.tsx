@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { featuredLinks } from "../lib/featured-links";
+import { featuredLinks, type FeaturedLink } from "../lib/featured-links";
 
-export function FeaturedLinks() {
+function LinkList({ links }: { links: FeaturedLink[] }) {
   return (
     <ul className="mt-2">
-      {featuredLinks.map((item) => (
+      {links.map((item) => (
         <li key={item.href} className="border-b py-5" style={{ borderColor: "var(--border)" }}>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <a href={item.href} target="_blank" rel="noreferrer" className="min-w-0 flex-1 basis-72 font-display text-lg leading-snug transition-colors hover:text-[var(--accent)]">
@@ -21,5 +21,22 @@ export function FeaturedLinks() {
         </li>
       ))}
     </ul>
+  );
+}
+
+export function FeaturedLinks({ compact = false }: { compact?: boolean }) {
+  if (!compact) return <LinkList links={featuredLinks} />;
+
+  return (
+    <>
+      <LinkList links={featuredLinks.filter((item) => item.main)} />
+      <details className="group mt-5">
+        <summary className="w-fit cursor-pointer text-sm transition-colors hover:text-[var(--accent)]" style={{ color: "var(--text-muted)" }}>
+          <span className="group-open:hidden">More</span>
+          <span className="hidden group-open:inline">Less</span>
+        </summary>
+        <LinkList links={featuredLinks.filter((item) => !item.main)} />
+      </details>
+    </>
   );
 }
