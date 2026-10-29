@@ -1,14 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getPosts, postYear } from "../lib/posts";
+import { FeaturedLinks } from "../components/FeaturedLinks";
 
 export const metadata: Metadata = {
-  title: "Writing — Gary Gao",
-  description: "Essays on AI agents, trust, and building.",
+  title: "Writing | Gary Gao",
+  description: "Launches, essays, and research.",
 };
 
-export default async function Writing() {
-  const posts = await getPosts();
+export default function Writing() {
   return (
     <div className="min-h-screen">
       <main className="mx-auto max-w-[680px] px-6 pt-20 pb-24 md:px-8 md:pt-28">
@@ -24,32 +23,10 @@ export default async function Writing() {
           Writing
         </h1>
         <p className="mt-3 text-[17px]" style={{ color: "var(--text-muted)" }}>
-          Essays on AI agents, trust, and building.
+          Launches, essays, and research.
         </p>
 
-        <ul className="mt-12">
-          {posts.map((post) => (
-            <li key={post.slug}>
-              <Link
-                href={`/writing/${post.slug}`}
-                className="group flex flex-col gap-1 border-t py-6 sm:flex-row sm:items-baseline sm:gap-6"
-                style={{ borderColor: "var(--border)" }}
-              >
-                <span className="shrink-0 text-sm tabular-nums" style={{ color: "var(--text-muted)" }}>
-                  {postYear(post)}
-                </span>
-                <span className="flex-1">
-                  <span className="font-display text-xl transition-colors group-hover:text-[var(--accent)]">
-                    {post.title}
-                  </span>
-                  <span className="mt-1 block text-[15px] leading-relaxed" style={{ color: "var(--text-muted)" }}>
-                    {post.excerpt}
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-10"><FeaturedLinks /></div>
       </main>
     </div>
   );

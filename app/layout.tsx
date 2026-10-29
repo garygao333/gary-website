@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Gary Gao",
   description:
-    "Gary Gao — co-founder of Chert. Writing on AI agents, trust, and building.",
+    "Gary Gao, co-founder and CEO at Chert (YC P26). We build infra that lets AI agents use FaceTime and iMessage.",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 

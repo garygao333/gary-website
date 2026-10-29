@@ -124,3 +124,46 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #aaaaaa;
 }
+
+.photo-stage {
+  position: relative;
+  height: clamp(260px, 65vw, 430px);
+  overflow: hidden;
+  perspective: 1100px;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+  user-select: none;
+  border-radius: 8px;
+}
+
+.photo-stage:active { cursor: grabbing; }
+
+.photo-slide {
+  position: absolute;
+  inset: 0 7%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f5f5f3;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms ease;
+  backface-visibility: hidden;
+  pointer-events: none;
+}
+
+.photo-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 180ms, border-color 180ms;
+}
+
+.photo-arrow:hover { color: var(--accent); border-color: var(--accent); }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-slide, .photo-arrow { transition: none; }
+}
