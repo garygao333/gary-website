@@ -11,27 +11,18 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Navigation */}
       <nav className="sticky top-0 z-50 backdrop-blur-sm" style={{ backgroundColor: "rgba(255,255,255,0.85)" }}>
-        <div className="mx-auto flex max-w-[720px] flex-wrap items-center justify-between gap-3 px-6 py-5 md:px-8">
-          <div className="flex items-center gap-4">
+        <div className="mx-auto flex max-w-[720px] items-start justify-between gap-4 px-6 py-5 sm:items-center md:px-8">
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
             <Link href="/" className="font-display text-lg font-semibold tracking-tight">Gary Gao</Link>
-            <a href="https://www.instagram.com/garygao333/" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="Instagram"><FaInstagram size={17} /></a>
-            <a href="https://x.com/GaryGao891219" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="X"><FaXTwitter size={16} /></a>
+            <div className="flex items-center gap-4" style={{ color: "var(--text-secondary)" }}>
+              <a href="https://github.com/garygao333" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="GitHub"><FaGithub size={17} /></a>
+              <a href="https://www.linkedin.com/in/garygao333/" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="LinkedIn"><FaLinkedinIn size={17} /></a>
+              <a href="https://www.instagram.com/garygao333/" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="Instagram"><FaInstagram size={17} /></a>
+              <a href="https://x.com/GaryGao891219" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="X"><FaXTwitter size={16} /></a>
+              <a href="mailto:gary@trychert.com" className="transition-colors hover:text-[var(--accent)]" aria-label="Email"><HiOutlineMail size={19} /></a>
+            </div>
           </div>
-          <div className="flex items-center gap-3 text-sm sm:gap-5" style={{ color: "var(--text-secondary)" }}>
-            <Link href="/writing" className="transition-colors hover:text-[var(--accent)]">
-              Writing
-            </Link>
-            <span className="hidden h-4 w-px sm:block" style={{ backgroundColor: "var(--border)" }} />
-            <a href="https://github.com/garygao333" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="GitHub">
-              <FaGithub size={17} />
-            </a>
-            <a href="https://www.linkedin.com/in/garygao333/" target="_blank" rel="noreferrer" className="transition-colors hover:text-[var(--accent)]" aria-label="LinkedIn">
-              <FaLinkedinIn size={17} />
-            </a>
-            <a href="mailto:gary@trychert.com" className="transition-colors hover:text-[var(--accent)]" aria-label="Email">
-              <HiOutlineMail size={19} />
-            </a>
-          </div>
+          <Link href="/writing" className="pt-1 text-sm transition-colors hover:text-[var(--accent)] sm:pt-0" style={{ color: "var(--text-secondary)" }}>Writing</Link>
         </div>
       </nav>
 
